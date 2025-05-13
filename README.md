@@ -119,3 +119,5 @@ vrrp_instance VI_1 {
         }
 }
 ```
+
+![Результат работы Keepalived](task2/5.png)
