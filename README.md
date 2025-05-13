@@ -66,7 +66,6 @@
 
 ### 🔹 Файл: [check_server.sh](task2/check_server.sh)
 
-[Скачать check_server.sh](task2/check_server.sh)
 
 ```bash
 #!/bin/bash
@@ -77,11 +76,8 @@ else
 fi
 ```
 
-🔹 Конфигурационный файл MASTER: keepalived-11.conf
+🔹 Конфигурационный файл MASTER:[keepalived-11.conf](task2/keepalived-11.conf)
 
-Для скачивания:
-
-Скачать keepalived-11.conf
 
 
 ```
@@ -107,9 +103,7 @@ vrrp_instance VI_1 {
 }
 ```
 
-🔹 Конфигурационный файл BACKUP: keepalived-22.conf
-
-Скачать keepalived-22.conf
+🔹 Конфигурационный файл BACKUP: [keepalived-22.conf](task2/keepalived-22.conf)
 
 
 ```
