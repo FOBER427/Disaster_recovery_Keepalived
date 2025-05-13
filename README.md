@@ -39,14 +39,18 @@
 
  ### *Ответ*
 
-![HSRP схема 1](images/hsrp_advanced-hw-1.png)
+## 🖼️ Скриншоты топологии HSRP
 
-![HSRP схема 2](images/hsrp_advanced-hw-1_2.png)
+![HSRP схема 1](images/hsrp_advanced-hw-1.png)  
+*Основная схема HSRP с маршрутизаторами*
 
-## 🎓 Packet Tracer лабораторная
+![HSRP схема 2](images/hsrp_advanced-hw-1_2.png)  
+*Дополнительные подключения и failover*
 
-Файл проекта можно скачать отсюда:  
-[Скачать hsrp_advanced-hw-1.pkt](./hsrp_advanced-hw-1.pkt)
+## 📁 Скачать проект Packet Tracer
+
+[Скачать файл hsrp_advanced-hw-1.pkt](./hsrp_advanced-hw-1.pkt)
+
 
 
 -----
@@ -60,20 +64,50 @@
  ### *Ответ*
 
 ```
+Bash-скрипт: check_server.sh
+
 #!/bin/bash
-if [[ $(netstat -tuln | grep LISTEN | grep :80) ]] && [[ -f /var/www/html/index.nginx-debian.html ]]; then
-        exit 0
+if [[ $(netstat -ant | grep LISTEN | grep :80) ]] && [[ -f /var/www/html/index.nginx-debian.html ]]; then
+  exit 0
 else
-        sudo systemctl stop keepalived
+  sudo systemctl stop keepalived
 fi
-```
 
-Файл конфига https://github.com/Ivashka80/Disaster-recovery_Keepalived/blob/main/keepalived.conf
+Конфигурационный файл MASTER: keepalived-11.conf
 
-![image](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/fbf9888d-5acc-4217-95af-2b33df123c20)
+vrrp_script check_server {
+        script "/home/tverdyakov/check_server.sh"
+        interval 3
+}
 
-![image](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/33d85673-d882-434f-9da8-49d8612cbf84)
+vrrp_instance VI_1 {
+        state MASTER
+        interface enp0s3
+        virtual_router_id 15
+        priority 255
+        advert_int 1
 
-![image](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/cdcf9435-0a52-4e49-9686-51a9070ef5fe)
+        virtual_ipaddress {
+                192.168.123.99/24
+        }
 
-![image](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/bcfaa39d-3104-4576-b8bc-df45b850793d)
+        track_script {
+                check_server
+        }
+
+}
+
+Конфигурационный файл BACKUP: keepalived-22.conf
+
+vrrp_instance VI_1 {
+	state BACKUP
+	interface enp0s3
+	virtual_router_id 15
+	priority 155
+	advert_int 1
+
+	virtual_ipaddress {
+		192.168.123.99/24
+	}
+
+}
