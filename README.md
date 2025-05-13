@@ -1,4 +1,4 @@
-# Домашнее задание к занятию 1 «Disaster recovery и Keepalived»
+# Домашнее задание Хомякова Антона к занятию 1 «Disaster recovery и Keepalived» 
 
 
 ### Цель задания
@@ -39,13 +39,15 @@
 
  ### *Ответ*
 
-![Снимок01](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/ab92f0f1-d717-4269-98a8-b5675f59f908)
+![HSRP схема 1](images/hsrp_advanced-hw-1.png)
 
-![Снимок02](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/fefda527-7b14-4d68-9cae-cddbdb8ff698)
+![HSRP схема 2](images/hsrp_advanced-hw-1_2.png)
 
-![Снимок03](https://github.com/Ivashka80/Disaster-recovery_Keepalived/assets/121082757/e74903aa-bde0-48af-90ab-04ecc1e0bc5a)
+## 🎓 Packet Tracer лабораторная
 
-Файл PKT https://github.com/Ivashka80/Disaster-recovery_Keepalived/blob/main/hsrp_advanced_DZ1.pkt
+Файл проекта можно скачать отсюда:  
+[Скачать hsrp_advanced-hw-1.pkt](./hsrp_advanced-hw-1.pkt)
+
 
 -----
 ### Задание 2
